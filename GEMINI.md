@@ -35,7 +35,11 @@ To create a premier online learning and certification platform for "Thought Para
 (No changes)
 
 ## 9. Testing Strategy
-(No changes)
+
+-   **Backend (Pytest):** The FastAPI backend will be tested using Pytest. Tests will cover API endpoints, business logic, and database interactions.
+-   **Frontend (Cypress):** End-to-end (E2E) tests for the Gatsby frontend will be written using Cypress. These tests will simulate user flows like registration, login, taking an exam, and verifying a certificate.
+-   **CI/CD Integration:** Both Pytest and Cypress tests will be integrated into a GitHub Actions workflow to run automatically on each push to the `main` branch.
+-   **Environment Variables:** The CI/CD pipeline will use GitHub Secrets to securely manage and expose environment variables (like Supabase keys) to the Gatsby build process.
 
 ## 10. Development Roadmap
 
@@ -91,4 +95,3 @@ This roadmap is updated to include timed exams, testing, and professional certif
 ### v0.1.0 (Initial Commit)
 - Initial project setup and core feature implementation.
 - Includes Gatsby frontend, FastAPI backend, Supabase integration, multi-exam architecture, question generation, blog, user authentication, and certificate verification.
-
