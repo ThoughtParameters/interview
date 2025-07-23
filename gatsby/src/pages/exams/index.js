@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import Layout from '../../components/layout';
 import { SEO } from '../../components/seo';
-import { supabase } from '../../utils/supabase';
+import { getSupabase } from '../../utils/supabase';
 
 const ExamsPage = () => {
   const [exams, setExams] = useState([]);
@@ -11,6 +11,7 @@ const ExamsPage = () => {
 
   useEffect(() => {
     const fetchExams = async () => {
+      const supabase = getSupabase();
       const { data, error } = await supabase.from('exams').select('*');
       if (error) {
         setError(error.message);

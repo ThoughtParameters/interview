@@ -4,7 +4,7 @@ import { SEO } from '../../components/seo';
 import PrivateRoute from '../../components/PrivateRoute';
 import { Router, navigate } from '@reach/router';
 import { useAuth } from '../../context/AuthContext';
-import { supabase } from '../../utils/supabase';
+import { getSupabase } from '../../utils/supabase';
 
 const ExamContent = ({ exam_slug }) => {
   const { user } = useAuth();
@@ -20,6 +20,7 @@ const ExamContent = ({ exam_slug }) => {
   useEffect(() => {
     const fetchExamAndQuestions = async () => {
       try {
+        const supabase = getSupabase();
         // Fetch exam details to get the ID
         const { data: examData, error: examError } = await supabase
           .from('exams')
@@ -75,6 +76,7 @@ const ExamContent = ({ exam_slug }) => {
     };
 
     try {
+      const supabase = getSupabase();
       const { data: session, error: sessionError } = await supabase.auth.getSession();
       if (sessionError) throw sessionError;
 

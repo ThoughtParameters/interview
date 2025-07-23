@@ -8827,7 +8827,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   apiRunner: () => (/* binding */ apiRunner),
 /* harmony export */   apiRunnerAsync: () => (/* binding */ apiRunnerAsync)
 /* harmony export */ });
-var plugins=[{name:'gatsby-plugin-image',plugin:__webpack_require__(2588),options:{"plugins":[]}},{name:'gatsby-plugin-sitemap',plugin:__webpack_require__(4988),options:{"plugins":[],"output":"/","createLinkInHead":true,"entryLimit":45000,"query":"{ site { siteMetadata { siteUrl } } allSitePage { nodes { path } } }","excludes":[]}},{name:'gatsby-plugin-google-analytics',plugin:__webpack_require__(2754),options:{"plugins":[],"trackingId":"G-HG0745ETV0","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0,"enableWebVitalsTracking":false}},{name:'default-site-plugin',plugin:__webpack_require__(3050),options:{"plugins":[]}},{name:'partytown',plugin:__webpack_require__(5292),options:{"plugins":[]}}];/* global plugins */ // During bootstrap, we write requires at top of this file which looks like:
+var plugins=[{name:'gatsby-plugin-image',plugin:__webpack_require__(2588),options:{"plugins":[]}},{name:'gatsby-plugin-google-analytics',plugin:__webpack_require__(2754),options:{"plugins":[],"trackingId":"G-HG0745ETV0","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0,"enableWebVitalsTracking":false}},{name:'default-site-plugin',plugin:__webpack_require__(3050),options:{"plugins":[]}},{name:'partytown',plugin:__webpack_require__(5292),options:{"plugins":[]}}];/* global plugins */ // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
 //   {
 //     plugin: require("/path/to/plugin1/gatsby-ssr.js"),
@@ -9630,15 +9630,6 @@ var React=__webpack_require__(826);var commonTags=__webpack_require__(5863);func
 
 /***/ }),
 
-/***/ 4988:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-var React=_interopRequireWildcard(__webpack_require__(826));var _gatsby=__webpack_require__(7076);var _path=__webpack_require__(1423);function _getRequireWildcardCache(nodeInterop){if(typeof WeakMap!=="function")return null;var cacheBabelInterop=new WeakMap();var cacheNodeInterop=new WeakMap();return(_getRequireWildcardCache=function _getRequireWildcardCache(nodeInterop){return nodeInterop?cacheNodeInterop:cacheBabelInterop;})(nodeInterop);}function _interopRequireWildcard(obj,nodeInterop){if(!nodeInterop&&obj&&obj.__esModule){return obj;}if(obj===null||typeof obj!=="object"&&typeof obj!=="function"){return{default:obj};}var cache=_getRequireWildcardCache(nodeInterop);if(cache&&cache.has(obj)){return cache.get(obj);}var newObj={};var hasPropertyDescriptor=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var key in obj){if(key!=="default"&&Object.prototype.hasOwnProperty.call(obj,key)){var desc=hasPropertyDescriptor?Object.getOwnPropertyDescriptor(obj,key):null;if(desc&&(desc.get||desc.set)){Object.defineProperty(newObj,key,desc);}else{newObj[key]=obj[key];}}}newObj.default=obj;if(cache){cache.set(obj,newObj);}return newObj;}// TODO: Remove for v3 - Fix janky path/asset prefixing
-var withPrefix=_gatsby.withAssetPrefix||_gatsby.withPrefix;exports.onRenderBody=function(_ref,pluginOptions){var setHeadComponents=_ref.setHeadComponents;var output=pluginOptions.output,createLinkInHead=pluginOptions.createLinkInHead;if(!createLinkInHead){return;}setHeadComponents([/*#__PURE__*/React.createElement("link",{key:"gatsby-plugin-sitemap",rel:"sitemap",type:"application/xml",href:withPrefix(_path.posix.join(output,"/sitemap-index.xml"))})]);};
-
-/***/ }),
-
 /***/ 2659:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -9649,10 +9640,10 @@ var withPrefix=_gatsby.withAssetPrefix||_gatsby.withPrefix;exports.onRenderBody=
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(826);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_supabase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7711);
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7076);
-const AuthContext=/*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();const AuthProvider=({children})=>{const{0:user,1:setUser}=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);const{0:loading,1:setLoading}=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{var _session$user;const session=_utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.auth.getSession();setUser((_session$user=session===null||session===void 0?void 0:session.user)!==null&&_session$user!==void 0?_session$user:null);setLoading(false);const{data:listener}=_utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.auth.onAuthStateChange(async(event,session)=>{var _session$user2;setUser((_session$user2=session===null||session===void 0?void 0:session.user)!==null&&_session$user2!==void 0?_session$user2:null);setLoading(false);});return()=>{listener===null||listener===void 0?void 0:listener.subscription.unsubscribe();};},[]);const value={signUp:data=>_utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.auth.signUp(data),signIn:data=>_utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.auth.signInWithPassword(data),signOut:async()=>{await _utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.auth.signOut();(0,gatsby__WEBPACK_IMPORTED_MODULE_2__.navigate)('/login');},deleteUser:async()=>{// This requires the user to be authenticated
-const{data,error}=await _utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase */ .O.rpc('delete_user');if(error)throw error;return data;},user,loading};return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AuthContext.Provider,{value:value},children);};const useAuth=()=>{return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(AuthContext);};
+/* harmony import */ var _utils_supabase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7711);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7076);
+const AuthContext=/*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();const AuthProvider=({children})=>{const{0:user,1:setUser}=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);const{0:loading,1:setLoading}=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);(0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{const supabase=(0,_utils_supabase__WEBPACK_IMPORTED_MODULE_2__/* .getSupabase */ .S)();const{data:listener}=supabase.auth.onAuthStateChange(async(event,session)=>{var _session$user;setUser((_session$user=session===null||session===void 0?void 0:session.user)!==null&&_session$user!==void 0?_session$user:null);setLoading(false);});// Set the initial user state
+supabase.auth.getSession().then(({data:{session}})=>{var _session$user2;setUser((_session$user2=session===null||session===void 0?void 0:session.user)!==null&&_session$user2!==void 0?_session$user2:null);setLoading(false);});return()=>{listener===null||listener===void 0?void 0:listener.subscription.unsubscribe();};},[]);const value={signUp:data=>(0,_utils_supabase__WEBPACK_IMPORTED_MODULE_2__/* .getSupabase */ .S)().auth.signUp(data),signIn:data=>(0,_utils_supabase__WEBPACK_IMPORTED_MODULE_2__/* .getSupabase */ .S)().auth.signInWithPassword(data),signOut:async()=>{await (0,_utils_supabase__WEBPACK_IMPORTED_MODULE_2__/* .getSupabase */ .S)().auth.signOut();(0,gatsby__WEBPACK_IMPORTED_MODULE_1__.navigate)('/login');},deleteUser:async()=>{const{data,error}=await (0,_utils_supabase__WEBPACK_IMPORTED_MODULE_2__/* .getSupabase */ .S)().rpc('delete_user');if(error)throw error;return data;},user,loading};return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AuthContext.Provider,{value:value},children);};const useAuth=()=>{return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(AuthContext);};
 
 /***/ }),
 
@@ -9663,7 +9654,7 @@ const{data,error}=await _utils_supabase__WEBPACK_IMPORTED_MODULE_1__/* .supabase
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  O: () => (/* binding */ supabase)
+  S: () => (/* binding */ getSupabase)
 });
 
 // NAMESPACE OBJECT: ./node_modules/ws/wrapper.mjs
@@ -16688,7 +16679,7 @@ const createClient = (supabaseUrl, supabaseKey, options) => {
 };
 //# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ./src/utils/supabase.js
-const supabase=createClient("https://sxdewlciysxsvbbiwyjv.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4ZGV3bGNpeXN4c3ZiYml3eWp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyMzgzMjcsImV4cCI6MjA2ODgxNDMyN30.gomR4iq_sFAfW4HAXfew3lxOoMGzYebwCmaxOKgfLzk");
+let supabase=null;const getSupabase=()=>{if(!supabase){supabase=createClient("https://sxdewlciysxsvbbiwyjv.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4ZGV3bGNpeXN4c3ZiYml3eWp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyMzgzMjcsImV4cCI6MjA2ODgxNDMyN30.gomR4iq_sFAfW4HAXfew3lxOoMGzYebwCmaxOKgfLzk");}return supabase;};
 
 /***/ }),
 

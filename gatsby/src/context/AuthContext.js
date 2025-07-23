@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { supabase } from '../utils/supabase';
+import { getSupabase } from '../utils/supabase';
 import { navigate } from 'gatsby';
 
 const AuthContext = createContext();
@@ -9,10 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const session = supabase.auth.getSession();
-    setUser(session?.user ?? null);
-    setLoading(false);
-
+    const supabase = getSupabase();
     const { data: listener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         setUser(session?.user ?? null);
@@ -20,23 +17,28 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
+    // Set the initial user state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
     return () => {
       listener?.subscription.unsubscribe();
     };
   }, []);
 
   const value = {
-    signUp: (data) => supabase.auth.signUp(data),
-    signIn: (data) => supabase.auth.signInWithPassword(data),
+    signUp: (data) => getSupabase().auth.signUp(data),
+    signIn: (data) => getSupabase().auth.signInWithPassword(data),
     signOut: async () => {
-      await supabase.auth.signOut();
+      await getSupabase().auth.signOut();
       navigate('/login');
     },
     deleteUser: async () => {
-        // This requires the user to be authenticated
-        const { data, error } = await supabase.rpc('delete_user');
-        if (error) throw error;
-        return data;
+      const { data, error } = await getSupabase().rpc('delete_user');
+      if (error) throw error;
+      return data;
     },
     user,
     loading,

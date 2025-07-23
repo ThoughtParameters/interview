@@ -3,10 +3,6 @@ var plugins = [{
       plugin: require('/Users/jasonmiller/GitHub/ThoughtParameters/interview/gatsby/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
       options: {"plugins":[]},
     },{
-      name: 'gatsby-plugin-sitemap',
-      plugin: require('/Users/jasonmiller/GitHub/ThoughtParameters/interview/gatsby/node_modules/gatsby-plugin-sitemap/gatsby-ssr.js'),
-      options: {"plugins":[],"output":"/","createLinkInHead":true,"entryLimit":45000,"query":"{ site { siteMetadata { siteUrl } } allSitePage { nodes { path } } }","excludes":[]},
-    },{
       name: 'gatsby-plugin-google-analytics',
       plugin: require('/Users/jasonmiller/GitHub/ThoughtParameters/interview/gatsby/node_modules/gatsby-plugin-google-analytics/gatsby-ssr.js'),
       options: {"plugins":[],"trackingId":"G-HG0745ETV0","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0,"enableWebVitalsTracking":false},

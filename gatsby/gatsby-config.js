@@ -33,7 +33,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-  `gatsby-plugin-sitemap`,
+  
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {

@@ -4,7 +4,7 @@ import { SEO } from '../components/seo';
 import PrivateRoute from '../components/PrivateRoute';
 import { useAuth } from '../context/AuthContext';
 import { navigate } from 'gatsby';
-import { supabase } from '../utils/supabase';
+import { getSupabase } from '../utils/supabase';
 
 const ProfileContent = () => {
   const { user, deleteUser, signOut } = useAuth();
@@ -15,6 +15,7 @@ const ProfileContent = () => {
   useEffect(() => {
     const fetchExamHistory = async () => {
       try {
+        const supabase = getSupabase();
         const { data: session, error: sessionError } = await supabase.auth.getSession();
         if (sessionError) throw sessionError;
 
