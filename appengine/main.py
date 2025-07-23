@@ -143,6 +143,33 @@ def get_verification(verification_id: uuid.UUID):
         return VerificationResult(full_name=result[0], exam_type=result[1], completed_at=result[2], passed=result[3])
     raise HTTPException(status_code=404, detail="Verification not found")
 
+@app.get("/profile/exam-history")
+def get_exam_history(user: dict = Depends(get_current_user)):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """
+        SELECT exam_type, score, passed, completed_at, duration_seconds
+        FROM user_exams
+        WHERE user_id = %s
+        ORDER BY completed_at DESC
+        """,
+        (user["sub"],),
+    )
+    history = cur.fetchall()
+    cur.close()
+    conn.close()
+    return [
+        {
+            "exam_type": row[0],
+            "score": row[1],
+            "passed": row[2],
+            "completed_at": row[3],
+            "duration_seconds": row[4],
+        }
+        for row in history
+    ]
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
