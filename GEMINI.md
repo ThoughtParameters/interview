@@ -8,72 +8,97 @@ The project is a web platform for users to access learning materials, take certi
 
 - **Company:** Thought Parameters LLC
 - **Website URL:** `interview.thoughtparameters.com`
-- **API URL:** `interviewapi.thoughtparameters.com`
+- **API URL:** `interviewapi.thoughtparameters.com` (via custom domain)
 
 ## 2. Technology Stack
 
 - **Frontend:** Gatsby (React), Tailwind CSS
-- **Backend:** FastAPI (Python)
+- **Backend:** FastAPI (Python), Pytest
 - **Database & Auth:** Supabase
+- **E2E Testing:** Cypress
 - **Hosting (Frontend):** GitHub Pages
 - **Hosting (Backend):** Google App Engine
 - **Analytics:** Google Analytics
 
 ## 3. Project Structure
-(No changes from previous version, but new pages will be added under `/pages/exams/`)
+(No changes from previous version)
 
 ## 4. Database & Content Strategy
 
--   **Database Schema:** The schema will be extended to support multiple, distinct exams.
-    -   A new **`exams`** table will serve as the central directory for all certifications (e.g., CKA, Docker). It will store the exam's name, slug, description, and passing score.
-    -   The **`questions`** table will have a direct foreign key relationship to the `exams` table, explicitly linking each question to a specific exam.
--   **Database Management:** The Supabase CLI will be used to manage database migrations.
--   **Content Generation:** Learning content and exam questions will be generated via deep research for each specific exam subject.
+-   **Database Schema:** The schema will be extended to support multiple, distinct exams and timed results.
+    -   An **`exams`** table will serve as the central directory for all certifications.
+    -   The **`questions`** table will link to the `exams` table.
+    -   The **`user_exams`** table will include a `duration_seconds` column to store the time taken for each exam attempt.
+-   **Database Management:** The Supabase CLI will be used for version-controlled migrations.
+-   **Content Generation:** Learning content and exam questions will be generated via deep research.
 
-## 5. Authentication & Backend Strategy
+## 5. Versioning & Changelog
+
+-   **Versioning:** The project will follow Semantic Versioning (v0.1.0). The version will be tracked in this document.
+-   **Changelog:** All significant changes will be documented in a changelog section in this file, linked to the corresponding git commit.
+
+**Current Version: v0.1.0**
+
+---
+
+## 6. Authentication & Backend Strategy
 (No changes from previous version)
 
-## 6. SEO & Analytics
+## 7. SEO & Analytics
 (No changes from previous version)
 
-## 7. FastAPI Backend (Google App Engine)
+## 8. FastAPI Backend (Google App Engine)
 (No changes from previous version)
 
-## 8. Development Roadmap
+## 9. Testing Strategy
 
-This roadmap is updated for the multi-exam architecture.
+-   **Backend (Pytest):** The FastAPI backend will be tested using Pytest. Tests will cover API endpoints, business logic, and database interactions.
+-   **Frontend (Cypress):** End-to-end (E2E) tests for the Gatsby frontend will be written using Cypress. These tests will simulate user flows like registration, login, taking an exam, and verifying a certificate.
+-   **CI/CD Integration:** Both Pytest and Cypress tests will be integrated into a GitHub Actions workflow to run automatically on each push to the `main` branch, ensuring code quality and preventing regressions.
+
+## 10. Development Roadmap
+
+This roadmap is updated to include timed exams, testing, and custom domain configuration.
 
 ### Phase 1: Core Infrastructure & Authentication
-(No changes from previous version)
+(Completed)
 
 ### Phase 2: Multi-Exam Architecture & Content
+(Completed)
 
-*Goal: Build a scalable foundation for multiple exams and deliver the core content.*
+### Phase 3: Timed Exam Implementation
 
-1.  **Update Database Schema:** Create a new migration to add the `exams` table and update the `questions` table with the new `exam_id` foreign key.
-2.  **Seed Exams Data:** Add CKA and CKAD as the initial entries in the new `exams` table.
-3.  **Generate Learning Content:** Begin the automated deep research and generation for CKA/CKAD learning materials.
-4.  **Generate Exam Questions:** Create the comprehensive bank of 150+ weighted exam questions, ensuring each is linked to the correct exam in the database.
-5.  **Create Question Seeding Migration:** Create a new Supabase migration to seed the database with the generated exam questions.
-6.  **Build Exam Directory:**
-    -   Create a new exam directory page at `/exams` that fetches and displays all available exams from the database.
-    -   Create a dynamic exam detail page at `/exams/{exam_slug}` to display specific information for each exam.
-7.  **Update Navigation:** Change the main "Exam" link in the header to point to the new `/exams` directory.
+*Goal: Implement the timed exam feature and configure the custom API domain.*
 
-### Phase 3: Exam Delivery & User Experience
+1.  **Update Database Schema:** Create a new migration to add the `duration_seconds` column to the `user_exams` table.
+2.  **Configure Custom Domain:**
+    -   Add `interviewapi.thoughtparameters.com` as a custom domain for the App Engine project.
+    -   Retrieve the required DNS records.
+    -   (Pending) Update DNS records on Cloudflare.
+3.  **Implement Timed Exam Backend:** Update the `/submit-exam` endpoint to accept and store the exam duration.
+4.  **Implement Timed Exam Frontend:**
+    -   Add a timer to the exam interface.
+    -   Capture the duration and send it to the backend upon submission.
 
-*Goal: Build the full, interactive exam-taking and results workflow.*
+### Phase 4: Testing & Quality Assurance
 
-1.  **Build Exam Backend:**
-    -   Update the `/questions/{exam_slug}` endpoint in FastAPI to fetch questions for the specified exam.
-    -   Create the authenticated `/submit-exam` endpoint to handle grading and result storage.
-2.  **Build Exam Interface:** Develop the interactive exam UI in a new, dynamic `/exam/{exam_slug}` page.
-3.  **Connect Exam Flow:** Integrate the frontend and backend to create a seamless exam experience, from starting the exam on the detail page to viewing the results.
-4.  **Enhance Profile Page:** Update the `/profile` page to display a history of the user's past exam attempts.
+*Goal: Ensure the application is robust and reliable through comprehensive testing.*
 
-### Phase 4: Polish & Advanced Features
+1.  **Setup Pytest:** Initialize Pytest in the `appengine` directory and write initial tests for the core API endpoints.
+2.  **Setup Cypress:** Initialize Cypress in the `gatsby` directory and write initial E2E tests for the main user flows (auth, exam directory).
+3.  **Create Testing Workflow:** Create a new GitHub Actions workflow to run both Pytest and Cypress tests automatically.
+
+### Phase 5: Polish & Advanced Features
 (Renumbered from Phase 3)
 
-### Phase 5: Final Deployment & Maintenance
+### Phase 6: Final Deployment & Maintenance
 (Renumbered from Phase 4)
+
+---
+
+## Changelog
+
+### v0.1.0 (Initial Commit)
+- Initial project setup and core feature implementation.
+- Includes Gatsby frontend, FastAPI backend, Supabase integration, multi-exam architecture, question generation, blog, user authentication, and certificate verification.
 

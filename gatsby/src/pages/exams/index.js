@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
-import Layout from '../components/layout';
-import { SEO } from '../components/seo';
-import { supabase } from '../utils/supabase';
+import Layout from '../../components/layout';
+import { SEO } from '../../components/seo';
+import { supabase } from '../../utils/supabase';
 
 const ExamsPage = () => {
   const [exams, setExams] = useState([]);

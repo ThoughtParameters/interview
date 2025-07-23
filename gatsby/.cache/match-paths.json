@@ -1,0 +1,18 @@
+[
+    {
+        "path": "/exams/",
+        "matchPath": "/exams/"
+    },
+    {
+        "path": "/exam/[...]/",
+        "matchPath": "/exam/*"
+    },
+    {
+        "path": "/exams/[...]/",
+        "matchPath": "/exams/*"
+    },
+    {
+        "path": "/verify/[...]/",
+        "matchPath": "/verify/*"
+    }
+]
