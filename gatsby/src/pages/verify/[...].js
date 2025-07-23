@@ -31,6 +31,28 @@ const VerificationContent = ({ verification_id }) => {
     }
   }, [verification_id]);
 
+  const AddToLinkedInButton = ({ verificationData, verification_id }) => {
+    const linkedInUrl = new URL('https://www.linkedin.com/profile/add');
+    linkedInUrl.searchParams.append('name', verificationData.exam_type);
+    linkedInUrl.searchParams.append('organizationName', 'Thought Parameters LLC');
+    const issueDate = new Date(verificationData.completed_at);
+    linkedInUrl.searchParams.append('issueYear', issueDate.getFullYear());
+    linkedInUrl.searchParams.append('issueMonth', issueDate.getMonth() + 1);
+    linkedInUrl.searchParams.append('credentialID', verification_id);
+    linkedInUrl.searchParams.append('credentialURL', `${window.location.origin}/verify/${verification_id}`);
+
+    return (
+      <a
+        href={linkedInUrl.toString()}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Add to LinkedIn
+      </a>
+    );
+  };
+
   return (
     <>
       {loading && <p>Loading...</p>}
@@ -50,6 +72,12 @@ const VerificationContent = ({ verification_id }) => {
           <p>
             <strong>Status:</strong> {verificationData.passed ? 'Passed' : 'Failed'}
           </p>
+          {verificationData.passed && (
+            <AddToLinkedInButton
+              verificationData={verificationData}
+              verification_id={verification_id}
+            />
+          )}
         </div>
       )}
     </>

@@ -51,6 +51,7 @@ class Answer(BaseModel):
 class ExamSubmission(BaseModel):
     exam_id: uuid.UUID
     answers: List[Answer]
+    duration_seconds: int
 
 class VerificationResult(BaseModel):
     full_name: str
@@ -110,10 +111,10 @@ def submit_exam(submission: ExamSubmission, user: dict = Depends(get_current_use
 
     cur.execute(
         """
-        INSERT INTO user_exams (user_id, exam_type, score, passed, verification_id)
-        VALUES (%s, %s, %s, %s, %s)
+        INSERT INTO user_exams (user_id, exam_type, score, passed, verification_id, duration_seconds)
+        VALUES (%s, %s, %s, %s, %s, %s)
         """,
-        (user["sub"], exam_name, percentage_score, passed, verification_id),
+        (user["sub"], exam_name, percentage_score, passed, verification_id, submission.duration_seconds),
     )
     conn.commit()
     cur.close()

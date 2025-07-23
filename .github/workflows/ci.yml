@@ -1,0 +1,42 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Backend (Pytest)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install backend dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+        working-directory: ./appengine
+      - name: Run backend tests
+        run: pytest
+        working-directory: ./appengine
+
+      # Frontend (Cypress)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: ./gatsby
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./gatsby
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./gatsby
+          start: npm run serve
+          wait-on: 'http://localhost:9000'
