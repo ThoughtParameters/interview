@@ -2,63 +2,44 @@
 
 This document outlines the plan for building a professional learning and exam/certification website for Thought Parameters LLC.
 
-## 1. Project Overview
+## 1. Project Vision
 
-The project is a web platform for users to access learning materials, take certification exams, read blog posts, and verify certifications. The frontend will be a Gatsby site, the backend will be a FastAPI application running on Google App Engine, and Supabase will be used for the database and authentication.
-
-- **Company:** Thought Parameters LLC
-- **Website URL:** `interview.thoughtparameters.com`
-- **API URL:** `interviewapi.thoughtparameters.com` (via custom domain)
+To create a premier online learning and certification platform for "Thought Parameters LLC". The platform will offer a seamless user experience, from in-depth learning modules to rigorous, timed exams. Upon successful completion, users will receive a verifiable digital certificate that they can easily share on professional networks like LinkedIn, enhancing their career prospects.
 
 ## 2. Technology Stack
-
-- **Frontend:** Gatsby (React), Tailwind CSS
-- **Backend:** FastAPI (Python), Pytest
-- **Database & Auth:** Supabase
-- **E2E Testing:** Cypress
-- **Hosting (Frontend):** GitHub Pages
-- **Hosting (Backend):** Google App Engine
-- **Analytics:** Google Analytics
+(No changes)
 
 ## 3. Project Structure
-(No changes from previous version)
+(No changes)
 
 ## 4. Database & Content Strategy
-
--   **Database Schema:** The schema will be extended to support multiple, distinct exams and timed results.
-    -   An **`exams`** table will serve as the central directory for all certifications.
-    -   The **`questions`** table will link to the `exams` table.
-    -   The **`user_exams`** table will include a `duration_seconds` column to store the time taken for each exam attempt.
--   **Database Management:** The Supabase CLI will be used for version-controlled migrations.
--   **Content Generation:** Learning content and exam questions will be generated via deep research.
+(No changes)
 
 ## 5. Versioning & Changelog
 
--   **Versioning:** The project will follow Semantic Versioning (v0.1.0). The version will be tracked in this document.
--   **Changelog:** All significant changes will be documented in a changelog section in this file, linked to the corresponding git commit.
+-   **Versioning:** The project will follow Semantic Versioning. The canonical version number is stored in the `VERSION` file in the root of the repository.
+-   **Git Tagging:** Each version bump will be accompanied by an annotated Git tag (e.g., `v0.2.0`).
+-   **Changelog:** All significant changes are documented below, linked to the corresponding git commit.
 
 **Current Version: v0.1.0**
 
 ---
 
 ## 6. Authentication & Backend Strategy
-(No changes from previous version)
+(No changes)
 
 ## 7. SEO & Analytics
-(No changes from previous version)
+(No changes)
 
 ## 8. FastAPI Backend (Google App Engine)
-(No changes from previous version)
+(No changes)
 
 ## 9. Testing Strategy
-
--   **Backend (Pytest):** The FastAPI backend will be tested using Pytest. Tests will cover API endpoints, business logic, and database interactions.
--   **Frontend (Cypress):** End-to-end (E2E) tests for the Gatsby frontend will be written using Cypress. These tests will simulate user flows like registration, login, taking an exam, and verifying a certificate.
--   **CI/CD Integration:** Both Pytest and Cypress tests will be integrated into a GitHub Actions workflow to run automatically on each push to the `main` branch, ensuring code quality and preventing regressions.
+(No changes)
 
 ## 10. Development Roadmap
 
-This roadmap is updated to include timed exams, testing, and custom domain configuration.
+This roadmap is updated to include timed exams, testing, and professional certification features.
 
 ### Phase 1: Core Infrastructure & Authentication
 (Completed)
@@ -88,11 +69,20 @@ This roadmap is updated to include timed exams, testing, and custom domain confi
 2.  **Setup Cypress:** Initialize Cypress in the `gatsby` directory and write initial E2E tests for the main user flows (auth, exam directory).
 3.  **Create Testing Workflow:** Create a new GitHub Actions workflow to run both Pytest and Cypress tests automatically.
 
-### Phase 5: Polish & Advanced Features
-(Renumbered from Phase 3)
+### Phase 5: Professional Certification & Polish
+
+*Goal: Elevate the user experience with professional-grade features.*
+
+1.  **Implement "Add to LinkedIn" Feature:**
+    -   On the certificate verification page, add a button that allows users to add their credential to their LinkedIn profile.
+    -   This will construct a URL with the necessary information (Organization Name, Certificate Name, Issue Date, Credential URL) to pre-fill the LinkedIn form.
+2.  **Enhance Profile Page:** Update the `/profile` page to display a rich history of the user's past exam attempts, including scores and durations.
+3.  **Implement Analytics Events:** Integrate Google Analytics custom event tracking for key user actions.
+4.  **Refine Blog:** Continue generating high-quality blog posts and consider adding features like categories or search.
+5.  **Conduct Full Site Review:** Perform a comprehensive review of the entire application for styling, usability, and bugs.
 
 ### Phase 6: Final Deployment & Maintenance
-(Renumbered from Phase 4)
+(No changes)
 
 ---
 
