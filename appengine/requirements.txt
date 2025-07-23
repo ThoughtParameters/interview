@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+google-cloud-secret-manager
+psycopg2-binary
+PyJWT

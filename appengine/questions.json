@@ -1,0 +1,63 @@
+[
+  {
+    "exam": "CKA",
+    "domain": "Cluster Architecture, Installation & Configuration",
+    "weight": 25,
+    "questions": [
+      {
+        "id": "cka-101",
+        "question_text": "Which command would you use to upgrade a Kubernetes cluster created with kubeadm?",
+        "answers": [
+          { "answer_text": "kubeadm upgrade apply", "is_correct": true },
+          { "answer_text": "kubectl upgrade cluster", "is_correct": false },
+          { "answer_text": "kubeadm update cluster", "is_correct": false },
+          { "answer_text": "kubectl cluster-info upgrade", "is_correct": false }
+        ]
+      },
+      {
+        "id": "cka-102",
+        "question_text": "What is the role of the etcd component in a Kubernetes cluster?",
+        "answers": [
+          { "answer_text": "It is the primary key-value store for all cluster data.", "is_correct": true },
+          { "answer_text": "It schedules pods onto nodes.", "is_correct": false },
+          { "answer_text": "It manages the container runtime.", "is_correct": false },
+          { "answer_text": "It provides networking between pods.", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "exam": "CKA",
+    "domain": "Workloads & Scheduling",
+    "weight": 15,
+    "questions": [
+      {
+        "id": "cka-201",
+        "question_text": "How do you scale a Deployment named 'my-app' to 5 replicas?",
+        "answers": [
+          { "answer_text": "kubectl scale deployment my-app --replicas=5", "is_correct": true },
+          { "answer_text": "kubectl edit deployment my-app", "is_correct": false },
+          { "answer_text": "kubectl rollout restart deployment my-app", "is_correct": false },
+          { "answer_text": "kubectl expose deployment my-app --replicas=5", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "exam": "CKAD",
+    "domain": "Application Design and Build",
+    "weight": 20,
+    "questions": [
+      {
+        "id": "ckad-101",
+        "question_text": "What is the purpose of a livenessProbe?",
+        "answers": [
+          { "answer_text": "To determine if a container is ready to accept traffic.", "is_correct": false },
+          { "answer_text": "To determine if a container is still running.", "is_correct": true },
+          { "answer_text": "To check for available updates to the container image.", "is_correct": false },
+          { "answer_text": "To provide a secure entrypoint into the container.", "is_correct": false }
+        ]
+      }
+    ]
+  }
+]
